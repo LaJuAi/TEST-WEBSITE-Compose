@@ -79,7 +79,7 @@ export const IntegrationsMarquee: React.FC<IntegrationsMarqueeProps> = ({ onSele
         <div className="flex flex-col items-center text-center mb-8">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60 mb-3 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="font-mono uppercase tracking-widest text-[11px]">INTEGRATED ECOSYSTEM</span>
+            <span className="font-mono uppercase tracking-widest text-xs">INTEGRATED ECOSYSTEM</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-white tracking-tight">
             Seamless Execution Across <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">1,000+ Tools</span>
@@ -100,7 +100,7 @@ export const IntegrationsMarquee: React.FC<IntegrationsMarqueeProps> = ({ onSele
                 >
                   <span className="w-2 h-2 rounded-full bg-purple-400/80" />
                   <span className="font-mono text-xs font-semibold text-white/90">{p.name}</span>
-                  <span className="text-[10px] font-mono text-white/40 px-1.5 py-0.2 rounded bg-white/5">{p.tier}</span>
+                  <span className="text-xs font-mono text-white/40 px-1.5 py-0.2 rounded bg-white/5">{p.tier}</span>
                 </div>
               ))}
             </div>
@@ -148,7 +148,7 @@ export const IntegrationsMarquee: React.FC<IntegrationsMarqueeProps> = ({ onSele
                   </div>
                   <div className="flex items-center gap-1.5">
                     {tool.badge && (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-white/70 border border-white/10">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-white/5 text-white/70 border border-white/10">
                         {tool.badge}
                       </span>
                     )}
@@ -164,11 +164,11 @@ export const IntegrationsMarquee: React.FC<IntegrationsMarqueeProps> = ({ onSele
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+              <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono">
                 <span className="text-purple-300/90 truncate font-semibold">
                   {tool.actionName}
                 </span>
-                <span className="text-white/40 text-[10px]">99.8% SLA</span>
+                <span className="text-white/40 text-xs">99.8% SLA</span>
               </div>
             </motion.div>
           ))}
@@ -216,19 +216,19 @@ export const IntegrationsMarquee: React.FC<IntegrationsMarqueeProps> = ({ onSele
               {/* Sample Input & Output JSON tabs */}
               <div className="space-y-3 font-mono text-xs">
                 <div>
-                  <span className="text-[10px] text-white/40 uppercase tracking-wider block mb-1">
+                  <span className="text-xs text-white/40 uppercase tracking-wider block mb-1">
                     Sample JSON Parameters
                   </span>
-                  <pre className="p-3 rounded-xl bg-black/60 border border-white/10 text-purple-300 overflow-x-auto text-[11px] leading-relaxed">
+                  <pre className="p-3 rounded-xl bg-black/60 border border-white/10 text-purple-300 overflow-x-auto text-xs leading-relaxed">
                     {JSON.stringify(activeModalTool.sampleInput, null, 2)}
                   </pre>
                 </div>
 
                 <div>
-                  <span className="text-[10px] text-white/40 uppercase tracking-wider block mb-1">
+                  <span className="text-xs text-white/40 uppercase tracking-wider block mb-1">
                     Normalized Execution Output (200 OK)
                   </span>
-                  <pre className="p-3 rounded-xl bg-black/60 border border-white/10 text-emerald-300 overflow-x-auto text-[11px] leading-relaxed">
+                  <pre className="p-3 rounded-xl bg-black/60 border border-white/10 text-emerald-300 overflow-x-auto text-xs leading-relaxed">
                     {JSON.stringify(activeModalTool.sampleOutput, null, 2)}
                   </pre>
                 </div>

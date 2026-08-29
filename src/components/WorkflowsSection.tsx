@@ -53,7 +53,7 @@ export const WorkflowsSection: React.FC<WorkflowsSectionProps> = ({ onOpenDemo }
         <div className="flex flex-col items-start gap-4 mb-14">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="font-mono uppercase tracking-widest text-[11px]">ZERO CODE TO FULL CONTROL</span>
+            <span className="font-mono uppercase tracking-widest text-xs">ZERO CODE TO FULL CONTROL</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight leading-tight">
@@ -116,14 +116,14 @@ export const WorkflowsSection: React.FC<WorkflowsSectionProps> = ({ onOpenDemo }
                       dev — ✻ Claude Code CLI — claude-3-7-sonnet
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">
+                  <span className="font-mono text-xs text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">
                     MCP Active
                   </span>
                 </div>
 
                 {/* Interactive Action Prompt Bubbles */}
                 <div className="space-y-2 mb-4">
-                  <div className="font-mono text-[11px] text-white/50 mb-2">
+                  <div className="font-mono text-xs text-white/50 mb-2">
                     Click any action to simulate multi-tool prompt:
                   </div>
 
@@ -141,7 +141,7 @@ export const WorkflowsSection: React.FC<WorkflowsSectionProps> = ({ onOpenDemo }
                         }`}
                       >
                         <span className="truncate pr-2 font-sans font-medium text-xs">{bubble.title}</span>
-                        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-purple-300 shrink-0">
+                        <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-white/10 text-purple-300 shrink-0">
                           {bubble.label}
                         </span>
                       </motion.button>
@@ -158,7 +158,7 @@ export const WorkflowsSection: React.FC<WorkflowsSectionProps> = ({ onOpenDemo }
                     </span>
                     <span className="w-1.5 h-3 bg-purple-400 animate-pulse ml-auto" />
                   </div>
-                  <div className="text-[11px] text-emerald-300 space-y-1">
+                  <div className="text-xs text-emerald-300 space-y-1">
                     <div>✓ Intent resolved: Identified 2 scoped tool actions.</div>
                     <div>✓ Executed delegated auth & microVM runner in 34ms.</div>
                     <div className="text-white/40">Response payload synced with harness environment.</div>
@@ -297,14 +297,14 @@ export const WorkflowsSection: React.FC<WorkflowsSectionProps> = ({ onOpenDemo }
                     {/* Tools badges */}
                     <div className="flex flex-wrap gap-1 mb-3">
                       {agent.tools.map((t, idx) => (
-                        <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/5 text-white/70 border border-white/10">
+                        <span key={idx} className="text-xs font-mono px-2 py-0.5 rounded-md bg-white/5 text-white/70 border border-white/10">
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                  <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-xs font-mono">
                     <span className="text-purple-300 truncate max-w-[200px]">
                       {agent.activeTask}
                     </span>

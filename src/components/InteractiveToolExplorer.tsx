@@ -68,7 +68,7 @@ export const InteractiveToolExplorer: React.FC<InteractiveToolExplorerProps> = (
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60 mb-4 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="font-mono uppercase tracking-widest text-[11px]">INTERACTIVE TOOL WORKBENCH</span>
+            <span className="font-mono uppercase tracking-widest text-xs">INTERACTIVE TOOL WORKBENCH</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight leading-tight">
@@ -119,7 +119,7 @@ export const InteractiveToolExplorer: React.FC<InteractiveToolExplorerProps> = (
           <div className="lg:col-span-5 backdrop-blur-xl bg-white/[0.03] rounded-2xl border border-white/10 p-4 max-h-[560px] overflow-y-auto space-y-2">
             <div className="font-mono text-xs text-white/50 uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
               <span>Matching Actions ({filteredTools.length})</span>
-              <span className="text-[10px] text-purple-300">Select to test</span>
+              <span className="text-xs text-purple-300">Select to test</span>
             </div>
 
             {filteredTools.map((tool) => {
@@ -144,9 +144,9 @@ export const InteractiveToolExplorer: React.FC<InteractiveToolExplorerProps> = (
                     <div>
                       <div className="font-mono text-xs font-bold text-white flex items-center gap-1.5">
                         {tool.name}
-                        <span className="text-[9px] font-mono text-white/50 px-1 py-0.2 rounded bg-white/5">{tool.category}</span>
+                        <span className="text-xs font-mono text-white/50 px-1 py-0.2 rounded bg-white/5">{tool.category}</span>
                       </div>
-                      <div className="text-[11px] font-mono text-purple-300/90 truncate max-w-[220px]">
+                      <div className="text-xs font-mono text-purple-300/90 truncate max-w-[220px]">
                         {tool.actionName}
                       </div>
                     </div>
@@ -175,7 +175,7 @@ export const InteractiveToolExplorer: React.FC<InteractiveToolExplorerProps> = (
                     <h3 className="font-display text-xl font-bold text-white">
                       {selectedTool.name}
                     </h3>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30">
+                    <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30">
                       {selectedTool.category}
                     </span>
                   </div>
@@ -199,10 +199,10 @@ export const InteractiveToolExplorer: React.FC<InteractiveToolExplorerProps> = (
               <div className="space-y-4 mb-4">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[11px] text-white/50 uppercase tracking-wider">
+                    <span className="font-mono text-xs text-white/50 uppercase tracking-wider">
                       Parameterized Payload (Input)
                     </span>
-                    <span className="text-[10px] font-mono text-white/40">Auto-validated schema</span>
+                    <span className="text-xs font-mono text-white/40">Auto-validated schema</span>
                   </div>
                   <pre className="p-3.5 rounded-xl bg-black/60 border border-white/10 text-purple-300 font-mono text-xs leading-relaxed overflow-x-auto">
                     {JSON.stringify(selectedTool.sampleInput, null, 2)}
@@ -212,12 +212,12 @@ export const InteractiveToolExplorer: React.FC<InteractiveToolExplorerProps> = (
                 {/* Execution Output Panel */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[11px] text-white/50 uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="font-mono text-xs text-white/50 uppercase tracking-wider flex items-center gap-1.5">
                       <Terminal className="w-3.5 h-3.5 text-emerald-400" />
                       Execution Result (Output)
                     </span>
                     {executionResult && (
-                      <span className="text-[10px] font-mono text-emerald-400 font-bold">
+                      <span className="text-xs font-mono text-emerald-400 font-bold">
                         {executionResult.status} {executionResult.statusText} · {executionResult.executionTimeMs}ms
                       </span>
                     )}

@@ -47,7 +47,7 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
         <div className="flex flex-col items-start gap-4 mb-12 md:mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="font-mono uppercase tracking-widest text-[11px]">WHY COMPOSIO</span>
+            <span className="font-mono uppercase tracking-widest text-xs">WHY COMPOSIO</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight leading-[1.15]">
@@ -59,16 +59,20 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
           </p>
         </div>
 
-        {/* Tab Selector Buttons Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        {/* Tab Selector Buttons Grid — Skill P1: role=tablist, aria-selected */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8" role="tablist" aria-label="Feature pillars">
           {FEATURE_PILLARS.map((pillar, idx) => (
             <button
               key={pillar.id}
+              role="tab"
+              aria-selected={activeTab === idx}
+              aria-controls={`pillar-panel-${pillar.id}`}
+              id={`pillar-tab-${pillar.id}`}
               onClick={() => {
                 setActiveTab(idx);
                 setInteractiveTestState('idle');
               }}
-              className={`p-4 rounded-2xl text-left transition-all border relative overflow-hidden flex flex-col justify-between min-h-[110px] backdrop-blur-xl ${
+              className={`p-4 rounded-2xl text-left transition-all border relative overflow-hidden flex flex-col justify-between min-h-[110px] backdrop-blur-xl focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
                 activeTab === idx
                   ? 'bg-white/[0.08] border-purple-400/40 shadow-[0_10px_30px_rgba(168,85,247,0.15)]'
                   : 'bg-white/[0.02] border-white/10 hover:border-white/20 text-white/60'
@@ -76,13 +80,13 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
             >
               <div className="flex items-center justify-between w-full">
                 <span className={`font-mono text-xs font-bold px-2 py-0.5 rounded-md ${
-                  activeTab === idx 
-                    ? 'bg-white text-black shadow-sm' 
+                  activeTab === idx
+                    ? 'bg-white text-black shadow-sm'
                     : 'bg-white/10 text-white/70'
                 }`}>
                   {pillar.num}
                 </span>
-                <span className="text-[10px] font-mono text-white/40 uppercase">{pillar.badge}</span>
+                <span className="text-xs font-mono text-white/40 uppercase" aria-hidden="true">{pillar.badge}</span>
               </div>
 
               <div>
@@ -91,13 +95,14 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
                 }`}>
                   {pillar.subtitle}
                 </div>
-                <div className="text-[11px] text-white/50 truncate mt-0.5">{pillar.title}</div>
+                <div className="text-xs text-white/50 truncate mt-0.5">{pillar.title}</div>
               </div>
 
               {activeTab === idx && (
-                <motion.div 
+                <motion.div
                   layoutId="activeTabGlow"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-400 via-blue-400 to-emerald-400" 
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-400 via-blue-400 to-emerald-400"
+                  aria-hidden="true"
                 />
               )}
             </button>
@@ -192,7 +197,7 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
                     Live Execution Demo
                   </span>
                 </div>
@@ -206,7 +211,7 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
 
                 {/* Interactive Simulation Output Box */}
                 <div className="p-4 bg-black/90 border-t border-white/10 flex flex-col gap-2">
-                  <div className="flex items-center justify-between font-mono text-[11px]">
+                  <div className="flex items-center justify-between font-mono text-xs">
                     <span className="text-white/40 uppercase tracking-wider flex items-center gap-1.5">
                       <Terminal className="w-3.5 h-3.5 text-emerald-400" />
                       Runtime Response:
@@ -216,7 +221,7 @@ export const WhyComposioSection: React.FC<WhyComposioSectionProps> = ({ onOpenDe
                     </span>
                   </div>
 
-                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 font-mono text-[11px] text-white/80">
+                  <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 font-mono text-xs text-white/80">
                     {interactiveTestState === 'running' ? (
                       <span className="text-purple-300 animate-pulse">Resolving parameters and optimizing schema...</span>
                     ) : interactiveTestState === 'completed' ? (

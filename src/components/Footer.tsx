@@ -22,8 +22,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo }) => {
     <footer className="relative bg-[#040405] border-t border-white/10 pt-16 pb-12 overflow-hidden z-10 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Grid Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-14">
+        {/* Top Grid Links — Skill P5: safe at 375px */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-14">
           
           {/* Col 0: Brand Logo & Status */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col justify-between">
@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo }) => {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2 font-mono text-[11px] text-emerald-400">
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2 font-mono text-xs text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>All Systems Operational</span>
             </div>
@@ -54,13 +54,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo }) => {
             <span className="text-white/40 uppercase tracking-wider font-semibold">PRODUCTS</span>
             <a href="#workflows" className="text-white/70 hover:text-white transition-colors flex items-center gap-1.5">
               <span>FOR YOU</span>
-              <span className="text-[9px] px-1 py-0.2 rounded bg-purple-500/20 text-purple-300">NEW</span>
+              <span className="text-xs px-1 py-0.5 rounded bg-purple-500/20 text-purple-300">NEW</span>
             </a>
             <a href="#workflows" className="text-white/70 hover:text-white transition-colors">DEVELOPER PLATFORM</a>
             <a href="#security" className="text-white/70 hover:text-white transition-colors">ENTERPRISE</a>
             <a href="#features" className="text-white/70 hover:text-white transition-colors">MCP GATEWAY</a>
             <a href="#workflows" className="text-white/70 hover:text-white transition-colors">CLI RUNNER</a>
-            <button onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">PRICING</button>
+            <button type="button" onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">PRICING</button>
           </div>
 
           {/* Col 2: Solutions */}
@@ -98,10 +98,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDemo }) => {
           <div className="flex flex-col gap-3 font-mono text-xs">
             <span className="text-white/40 uppercase tracking-wider font-semibold">COMPANY</span>
             <a href="#security" className="text-white/70 hover:text-white transition-colors">TRUST CENTER</a>
-            <button onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">CONTACT SALES</button>
-            <button onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">CAREERS</button>
-            <button onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">TERMS OF SERVICE</button>
-            <button onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">PRIVACY POLICY</button>
+            <button type="button" onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">CONTACT SALES</button>
+            <button type="button" onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">CAREERS</button>
+            <button type="button" onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">TERMS OF SERVICE</button>
+            <button type="button" onClick={onOpenDemo} className="text-left text-white/70 hover:text-white transition-colors">PRIVACY POLICY</button>
           </div>
 
         </div>

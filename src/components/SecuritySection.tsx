@@ -49,7 +49,7 @@ export const SecuritySection: React.FC<SecuritySectionProps> = ({ onOpenDemo }) 
         <div className="flex flex-col items-start gap-4 mb-14">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span className="font-mono uppercase tracking-widest text-[11px]">SAFETY & SECURITY</span>
+            <span className="font-mono uppercase tracking-widest text-xs">SAFETY & SECURITY</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight leading-tight max-w-2xl">
@@ -100,7 +100,7 @@ export const SecuritySection: React.FC<SecuritySectionProps> = ({ onOpenDemo }) 
               </div>
 
               {/* Bottom live security telemetry */}
-              <div className="absolute bottom-4 inset-x-6 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/50">
+              <div className="absolute bottom-4 inset-x-6 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-white/50">
                 <span className="flex items-center gap-1.5 text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   100% Sandbox Isolation

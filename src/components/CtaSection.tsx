@@ -38,7 +38,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenDemo }) => {
           
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/60 mb-6 backdrop-blur-md">
             <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span className="font-mono uppercase tracking-widest text-[11px]">START EXECUTING ACTIONS TODAY</span>
+            <span className="font-mono uppercase tracking-widest text-xs">START EXECUTING ACTIONS TODAY</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white tracking-tight leading-[1.1] mb-6 max-w-2xl mx-auto">
@@ -51,23 +51,27 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenDemo }) => {
             Connect 1,000+ tools with zero boilerplate auth code.
           </p>
 
-          {/* Quick Agent Prompt Simulator */}
-          <form onSubmit={handleTestPrompt} className="max-w-lg mx-auto mb-8">
+          {/* Quick Agent Prompt Simulator — Skill P8: explicit label */}
+          <form onSubmit={handleTestPrompt} className="max-w-lg mx-auto mb-8" aria-label="Test an agent prompt">
             <div className="backdrop-blur-xl bg-black/60 rounded-2xl p-1.5 border border-white/10 flex items-center gap-2 shadow-inner">
-              <Terminal className="w-4 h-4 text-purple-400 ml-3 shrink-0" />
+              <label htmlFor="cta-prompt-input" className="sr-only">What action should your agent execute?</label>
+              <Terminal className="w-4 h-4 text-purple-400 ml-3 shrink-0" aria-hidden="true" />
               <input
+                id="cta-prompt-input"
                 type="text"
                 placeholder="What action should your agent execute?..."
                 value={testPrompt}
                 onChange={(e) => setTestPrompt(e.target.value)}
+                autoComplete="off"
                 className="w-full bg-transparent border-none text-xs font-mono text-white placeholder-white/40 focus:outline-none px-2 py-2"
               />
               <button
                 type="submit"
-                className="px-4 py-2.5 bg-white text-black font-bold text-xs rounded-xl hover:bg-white/90 transition-all font-mono shrink-0 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                aria-label={submitted ? 'Initializing sandbox' : 'Test run this agent prompt'}
+                className="px-4 py-2.5 min-h-[44px] bg-white text-black font-bold text-xs rounded-xl hover:bg-white/90 transition-all font-mono shrink-0 flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,255,255,0.2)] focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
               >
                 <span>{submitted ? 'Initializing...' : 'Test Run'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             </div>
           </form>
@@ -76,15 +80,15 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onOpenDemo }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={onOpenDemo}
-              className="w-full sm:w-auto px-8 py-3.5 bg-white text-black font-bold text-sm rounded-full hover:bg-white/90 transition-all font-mono flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="w-full sm:w-auto px-8 py-3.5 min-h-[44px] bg-white text-black font-bold text-sm rounded-full hover:bg-white/90 transition-all font-mono flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
             >
               <span>TRY COMPOSIO TODAY</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>
 
             <button
               onClick={onOpenDemo}
-              className="w-full sm:w-auto px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white font-mono text-sm font-semibold rounded-full border border-white/10 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-7 py-3.5 min-h-[44px] bg-white/5 hover:bg-white/10 text-white font-mono text-sm font-semibold rounded-full border border-white/10 transition-all flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
             >
               <span>GET A DEMO</span>
             </button>

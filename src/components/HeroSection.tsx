@@ -81,17 +81,18 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
         
         {/* Top Feature Pill */}
         <div className="flex justify-center mb-6">
-          <motion.div
+          <motion.button
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-white/70 hover:border-white/20 transition-colors cursor-pointer group backdrop-blur-md"
+            className="inline-flex items-center space-x-2 px-3.5 py-2 min-h-[44px] bg-white/5 border border-white/10 rounded-full text-xs text-white/70 hover:border-white/20 transition-colors group backdrop-blur-md focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
             onClick={onOpenDemo}
+            aria-label="Learn about Just-In-Time Tool Execution for AI Agents"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
             <span className="text-white/80 font-medium">Just-In-Time Tool Execution for AI Agents</span>
-            <span className="text-purple-400 font-bold group-hover:translate-x-0.5 transition-transform">→</span>
-          </motion.div>
+            <span className="text-purple-400 font-bold group-hover:translate-x-0.5 transition-transform" aria-hidden="true">→</span>
+          </motion.button>
         </div>
 
         {/* Main Headline */}
@@ -128,17 +129,17 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
         >
           <button
             onClick={onOpenDemo}
-            className="w-full sm:w-auto px-7 py-3 bg-white text-black text-xs font-bold rounded-full hover:bg-white/90 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            className="w-full sm:w-auto px-7 py-3 min-h-[44px] bg-white text-black text-sm font-bold rounded-full hover:bg-white/90 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.15)] focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
           >
             <span>GET STARTED FOR FREE</span>
-            <ArrowRight className="w-4 h-4 text-black" />
+            <ArrowRight className="w-4 h-4 text-black" aria-hidden="true" />
           </button>
 
           <button
             onClick={onOpenDemo}
-            className="w-full sm:w-auto px-6 py-3 bg-white/5 hover:bg-white/10 text-white text-xs font-medium border border-white/10 rounded-full transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+            className="w-full sm:w-auto px-6 py-3 min-h-[44px] bg-white/5 hover:bg-white/10 text-white text-sm font-medium border border-white/10 rounded-full transition-all flex items-center justify-center gap-2 backdrop-blur-md focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
           >
-            <Play className="w-3.5 h-3.5 text-purple-400 fill-purple-400" />
+            <Play className="w-3.5 h-3.5 text-purple-400 fill-purple-400" aria-hidden="true" />
             <span>INTERACTIVE DEMO</span>
           </button>
         </motion.div>
@@ -154,20 +155,21 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
           transition={{ duration: 0.8, delay: 0.4 }}
           className="relative max-w-6xl mx-auto"
         >
-          {/* Scenario Picker Pills */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-4 px-2">
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-white/50 uppercase tracking-widest font-semibold flex items-center gap-1.5 font-mono">
-                <Zap className="w-3.5 h-3.5 text-purple-400" />
+          {/* Scenario Picker Pills — Skill P2: min 44px, Skill P1: aria-pressed */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4 px-2" role="toolbar" aria-label="Agent scenario selector">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs text-white/60 uppercase tracking-widest font-semibold flex items-center gap-1.5 font-mono" aria-hidden="true">
+                <Zap className="w-3.5 h-3.5 text-purple-400" aria-hidden="true" />
                 Live Agent Harness:
               </span>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5" role="group" aria-label="Select scenario">
                 {scenarios.map((sc, i) => (
                   <button
                     key={i}
                     onClick={() => handleRunSimulation(i)}
-                    className={`text-xs px-3.5 py-1 rounded-full transition-all flex items-center gap-1.5 font-mono ${
-                      activeScenario === i 
+                    aria-pressed={activeScenario === i}
+                    className={`text-xs px-3.5 py-2 min-h-[44px] rounded-full transition-all flex items-center gap-1.5 font-mono focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
+                      activeScenario === i
                         ? 'bg-purple-500/20 text-purple-300 border border-purple-400/40 shadow-[0_0_12px_rgba(168,85,247,0.3)] font-semibold'
                         : 'bg-white/5 text-white/60 hover:text-white border border-white/10 hover:bg-white/10'
                     }`}
@@ -178,13 +180,16 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
               </div>
             </div>
 
+            {/* Skill P1: aria-busy during simulation */}
             <button
               onClick={() => handleRunSimulation(activeScenario)}
               disabled={isSimulating}
-              className="text-xs text-white/70 hover:text-white flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-mono"
+              aria-busy={isSimulating}
+              aria-label={isSimulating ? 'Executing tool chain, please wait' : 'Replay simulation'}
+              className="text-xs text-white/70 hover:text-white flex items-center gap-1.5 px-3.5 py-2 min-h-[44px] rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors font-mono disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none"
             >
-              <RotateCcw className={`w-3 h-3 ${isSimulating ? 'animate-spin' : ''}`} />
-              <span>{isSimulating ? 'Executing Tool Chain...' : 'Replay Simulation'}</span>
+              <RotateCcw className={`w-3 h-3 ${isSimulating ? 'animate-spin' : ''}`} aria-hidden="true" />
+              <span aria-live="polite">{isSimulating ? 'Executing Tool Chain...' : 'Replay Simulation'}</span>
             </button>
           </div>
 
@@ -227,11 +232,11 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
               <div className="lg:col-span-4 flex flex-col gap-4">
                 <div className="glass-panel rounded-2xl p-4 border border-white/10 relative">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[11px] text-cyan-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                    <span className="font-mono text-xs text-cyan-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
                       <Search className="w-3.5 h-3.5" />
                       composio_search_tools
                     </span>
-                    <span className="text-[10px] font-mono text-slate-500">JIT Intent</span>
+                    <span className="text-xs font-mono text-slate-500">JIT Intent</span>
                   </div>
 
                   {/* Search Query Input Display */}
@@ -255,7 +260,7 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                         </span>
                         <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
                       </div>
-                      <p className="text-[10px] font-mono text-slate-400 mt-1">
+                      <p className="text-xs font-mono text-slate-400 mt-1">
                         Schema matched with 99.4% intent confidence
                       </p>
                     </div>
@@ -271,14 +276,14 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                         </span>
                         <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
                       </div>
-                      <p className="text-[10px] font-mono text-slate-400 mt-1">
-                        Parameters pruned (reduced tokens by 84%)
-                      </p>
+                      <p className="text-xs font-mono text-slate-400 mt-1">
+                          Parameters pruned (reduced tokens by 84%)
+                        </p>
                     </div>
                   </div>
 
                   {/* Execution Plan Step */}
-                  <div className="mt-4 pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-[10px] font-mono">
+                  <div className="mt-4 pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-xs font-mono">
                     <div className="bg-white/5 p-2 rounded-lg">
                       <span className="text-slate-500 uppercase block">Plan:</span>
                       <span className="text-slate-300">1. Authenticate user</span>
@@ -295,11 +300,11 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                 {/* Left Bottom: Connection Manager */}
                 <div className="glass-panel rounded-2xl p-4 border border-white/10">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[11px] text-purple-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                    <span className="font-mono text-xs text-purple-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
                       <Shield className="w-3.5 h-3.5" />
                       composio_manage_auth
                     </span>
-                    <span className="text-[10px] font-mono text-emerald-400">CONNECTED</span>
+                    <span className="text-xs font-mono text-emerald-400">CONNECTED</span>
                   </div>
 
                   <div className="space-y-2 font-mono text-xs">
@@ -317,7 +322,7 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
 
               {/* Center Column: Agent Chat Window (5 cols) */}
               <div className="lg:col-span-5 flex flex-col gap-4">
-                <div className="glass-panel rounded-2xl p-4 border border-white/15 bg-black/50 flex flex-col h-[480px]">
+                <div className="glass-panel rounded-2xl p-4 border border-white/15 bg-black/50 flex flex-col min-h-[400px] max-h-[520px] overflow-hidden">
                   
                   {/* Chat Header */}
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
@@ -328,9 +333,9 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                       <div>
                         <div className="font-mono text-xs font-semibold text-white flex items-center gap-1.5">
                           Claude 3.7 Sonnet
-                          <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-white/10 text-slate-300">Cowork</span>
+                          <span className="text-xs font-mono px-1 py-0.2 rounded bg-white/10 text-slate-300">Cowork</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 font-mono">Agent Harness v2.4</div>
+                        <div className="text-xs text-slate-400 font-mono">Agent Harness v2.4</div>
                       </div>
                     </div>
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -340,7 +345,7 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                   <div className="flex-1 overflow-y-auto space-y-3 font-sans text-xs pr-1">
                     {/* User Prompt */}
                     <div className="flex gap-2.5 items-start">
-                      <div className="w-5 h-5 rounded-md bg-white/10 font-mono text-[10px] flex items-center justify-center text-slate-300 shrink-0">
+                      <div className="w-5 h-5 rounded-md bg-white/10 font-mono text-xs flex items-center justify-center text-slate-300 shrink-0">
                         U
                       </div>
                       <div className="glass-panel p-3 rounded-2xl rounded-tl-sm text-slate-200 border-white/10 bg-white/[0.04] max-w-[90%]">
@@ -350,7 +355,7 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
 
                     {/* Agent Thinking & Tool Call Invocation */}
                     <div className="flex gap-2.5 items-start">
-                      <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-amber-600 to-orange-500 font-mono text-[10px] flex items-center justify-center text-white shrink-0">
+                      <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-amber-600 to-orange-500 font-mono text-xs flex items-center justify-center text-white shrink-0">
                         A
                       </div>
                       <div className="space-y-2 max-w-[95%]">
@@ -359,13 +364,13 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                         </div>
 
                         {/* Tool Call Chips */}
-                        <div className="font-mono text-[11px] space-y-1.5">
+                        <div className="font-mono text-xs space-y-1.5">
                           <div className="p-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-200 flex items-center justify-between">
                             <span className="flex items-center gap-1.5">
                               <Code2 className="w-3.5 h-3.5 text-cyan-400" />
                               call {scenarios[activeScenario].tool1}()
                             </span>
-                            <span className="text-[10px] text-emerald-400 font-bold">200 OK</span>
+                            <span className="text-xs text-emerald-400 font-bold">200 OK</span>
                           </div>
 
                           <div className="p-2 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-200 flex items-center justify-between">
@@ -373,7 +378,7 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                               <GitPullRequest className="w-3.5 h-3.5 text-indigo-400" />
                               call {scenarios[activeScenario].tool2}()
                             </span>
-                            <span className="text-[10px] text-emerald-400 font-bold">200 OK</span>
+                            <span className="text-xs text-emerald-400 font-bold">200 OK</span>
                           </div>
                         </div>
 
@@ -385,20 +390,24 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                     </div>
                   </div>
 
-                  {/* Chat Input Bar */}
+                  {/* Chat Input Bar — Skill P1: labeled, Skill P2: min touch targets */}
                   <div className="mt-3 pt-3 border-t border-white/10 flex items-center gap-2">
-                    <input 
-                      type="text" 
-                      readOnly 
-                      value="Interactive agent harness connected. Ready for action." 
+                    <label htmlFor="agent-harness-input" className="sr-only">Agent harness input (read-only)</label>
+                    <input
+                      id="agent-harness-input"
+                      type="text"
+                      readOnly
+                      aria-readonly="true"
+                      aria-label="Agent harness status: Interactive agent harness connected. Ready for action."
+                      value="Interactive agent harness connected. Ready for action."
                       className="flex-1 bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-slate-400 focus:outline-none"
                     />
-                    <button 
+                    <button
                       onClick={() => handleRunSimulation(activeScenario)}
-                      className="p-2 rounded-xl bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400 transition-colors"
-                      title="Run prompt"
+                      aria-label="Run current simulation"
+                      className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:outline-none"
                     >
-                      <Play className="w-3.5 h-3.5 fill-slate-950" />
+                      <Play className="w-3.5 h-3.5 fill-slate-950" aria-hidden="true" />
                     </button>
                   </div>
                 </div>
@@ -410,14 +419,14 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                 {/* Execute Tool Result */}
                 <div className="glass-panel rounded-2xl p-4 border border-white/10">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-[11px] text-emerald-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                    <span className="font-mono text-xs text-emerald-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       composio_execute_tool
                     </span>
-                    <span className="text-[10px] font-mono text-emerald-400">200 OK</span>
+                    <span className="text-xs font-mono text-emerald-400">200 OK</span>
                   </div>
 
-                  <div className="bg-black/60 rounded-xl p-3 border border-white/10 font-mono text-[11px] space-y-1.5 text-slate-300">
+                  <div className="bg-black/60 rounded-xl p-3 border border-white/10 font-mono text-xs space-y-1.5 text-slate-300">
                     <div className="flex justify-between text-slate-400">
                       <span>status:</span>
                       <span className="text-emerald-400">success</span>
@@ -426,7 +435,7 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                       <span>duration:</span>
                       <span className="text-cyan-300">42ms</span>
                     </div>
-                    <div className="pt-2 border-t border-white/10 text-[10px] text-slate-400 truncate">
+                    <div className="pt-2 border-t border-white/10 text-xs text-slate-400 truncate">
                       {scenarios[activeScenario].payloadResult}
                     </div>
                   </div>
@@ -435,11 +444,11 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                 {/* Dynamic Sandbox Python Runner */}
                 <div className="glass-panel rounded-2xl p-4 border border-white/10 flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-[11px] text-amber-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                    <span className="font-mono text-xs text-amber-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
                       <Cpu className="w-3.5 h-3.5" />
                       composio_sandbox
                     </span>
-                    <span className="text-[9px] font-mono text-slate-400">Python 3.11</span>
+                    <span className="text-xs font-mono text-slate-400">Python 3.11</span>
                   </div>
 
                   {/* MicroVM Grid Activity Indicator */}
@@ -454,11 +463,11 @@ run_composio_tool('NOTION_CREATE_PAGE', title='August MRR Summary', data=mrr_dat
                         />
                       ))}
                     </div>
-                    <span className="text-[9px] font-mono text-slate-400 ml-auto">microVM · hot</span>
+                    <span className="text-xs font-mono text-slate-400 ml-auto">microVM · hot</span>
                   </div>
 
                   {/* Sandbox Code Block */}
-                  <div className="bg-black/80 rounded-xl p-2.5 border border-white/10 overflow-hidden font-mono text-[10px] text-slate-300 leading-relaxed">
+                  <div className="bg-black/80 rounded-xl p-2.5 border border-white/10 overflow-hidden font-mono text-xs text-slate-300 leading-relaxed">
                     <pre className="text-cyan-300/90 overflow-x-auto">
                       {scenarios[activeScenario].codeSnippet}
                     </pre>

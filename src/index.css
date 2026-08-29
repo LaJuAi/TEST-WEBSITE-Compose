@@ -1,27 +1,120 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   DESIGN TOKENS — AI-Native UI / Dark Mode OLED
+   Source: UI/UX Pro Max skill — AI/Chatbot Platform recommendation
+   ───────────────────────────────────────────────────────────────────────────── */
 @layer base {
   :root {
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Fonts */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-display: 'Syne', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+
+    /* Color tokens — Dark OLED palette */
+    --color-background:       #050505;
+    --color-surface:          #0a0a0f;
+    --color-card:             #0d0d14;
+    --color-border:           rgba(255, 255, 255, 0.08);
+    --color-border-strong:    rgba(255, 255, 255, 0.15);
+
+    --color-foreground:       #f8fafc;
+    --color-muted:            rgba(255, 255, 255, 0.5);
+    --color-subtle:           rgba(255, 255, 255, 0.35);
+
+    /* Brand / accent */
+    --color-purple:           #a855f7;
+    --color-purple-muted:     rgba(168, 85, 247, 0.15);
+    --color-blue:             #60a5fa;
+    --color-blue-muted:       rgba(96, 165, 250, 0.15);
+    --color-emerald:          #34d399;
+    --color-emerald-muted:    rgba(52, 211, 153, 0.15);
+    --color-cyan:             #22d3ee;
+    --color-ring:             rgba(255, 255, 255, 0.5);
+
+    /* Spacing scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+
+    /* Radius */
+    --radius-sm:   8px;
+    --radius-md:   12px;
+    --radius-lg:   16px;
+    --radius-xl:   20px;
+    --radius-2xl:  24px;
+    --radius-full: 9999px;
+
+    /* Easing */
+    --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Touch target minimum */
+    --touch-target: 44px;
   }
 
+  /* ── Base resets ─────────────────────────────────────────────────────────── */
   body {
     font-family: var(--font-sans);
-    background-color: #050505;
-    color: #ffffff;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-size: 1rem;         /* 16px base — skill P6 */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, .font-display {
+  h1, h2, h3, h4, .font-display {
     font-family: var(--font-display);
+    line-height: 1.1;
   }
 
   code, pre, .font-mono {
     font-family: var(--font-mono);
   }
+
+  /* Skill P2: cursor-pointer on all interactive elements */
+  button,
+  [role="button"],
+  [role="menuitem"],
+  [role="tab"],
+  a[href],
+  label[for],
+  summary {
+    cursor: pointer;
+  }
+
+  /* Skill P1: visible focus ring — never suppress without replacement */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Visually hidden helper (for accessible labels) */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   ANIMATIONS
+   ───────────────────────────────────────────────────────────────────────────── */
 @keyframes morphBlob1 {
   0%, 100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -53,55 +146,61 @@
 }
 
 @keyframes fluidFloat {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(1deg); }
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.35;
-    filter: blur(60px);
-  }
-  50% {
-    opacity: 0.65;
-    filter: blur(75px);
-  }
+  0%, 100% { opacity: 0.35; filter: blur(60px); }
+  50%       { opacity: 0.65; filter: blur(75px); }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-morph-1    { animation: morphBlob1 20s ease-in-out infinite; }
+.animate-morph-2    { animation: morphBlob2 24s ease-in-out infinite; }
+.animate-fluid-float { animation: fluidFloat 7s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulseGlow 9s ease-in-out infinite; }
+.animate-marquee     { animation: marquee 30s linear infinite; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SKILL P3 + P7: prefers-reduced-motion — disable/minimise all animations
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  100% {
-    background-position: 200% 0;
+
+  .animate-morph-1,
+  .animate-morph-2,
+  .animate-fluid-float,
+  .animate-pulse-glow,
+  .animate-marquee {
+    animation: none !important;
   }
 }
 
-.animate-morph-1 {
-  animation: morphBlob1 20s ease-in-out infinite;
-}
-
-.animate-morph-2 {
-  animation: morphBlob2 24s ease-in-out infinite;
-}
-
-.animate-fluid-float {
-  animation: fluidFloat 7s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 9s ease-in-out infinite;
-}
-
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLASS UTILITIES
+   ───────────────────────────────────────────────────────────────────────────── */
 .glass-panel {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-border);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
 }
 
@@ -109,7 +208,7 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--color-border-strong);
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
 }
 
@@ -121,11 +220,16 @@
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BUTTON VARIANTS
+   ───────────────────────────────────────────────────────────────────────────── */
 .glossy-button-primary {
   background: #ffffff;
   color: #000000;
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s var(--ease-spring);
+  min-height: var(--touch-target);
+  cursor: pointer;
 }
 .glossy-button-primary:hover {
   background: rgba(255, 255, 255, 0.92);
@@ -137,39 +241,36 @@
   background: linear-gradient(135deg, #c084fc 0%, #60a5fa 50%, #34d399 100%);
   color: #050505;
   box-shadow: 0 4px 20px rgba(192, 132, 252, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s var(--ease-spring);
+  min-height: var(--touch-target);
+  cursor: pointer;
 }
 .glossy-button-cyan:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 30px rgba(192, 132, 252, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   TEXT GRADIENT UTILITIES
+   ───────────────────────────────────────────────────────────────────────────── */
 .text-gradient-fluid {
   background: linear-gradient(to right, #c084fc, #60a5fa, #34d399);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .text-gradient-aurora {
   background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Custom smooth scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #050505;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCROLLBAR
+   ───────────────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--color-background); }
+::-webkit-scrollbar-thumb  { background: rgba(255, 255, 255, 0.12); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
