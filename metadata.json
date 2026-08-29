@@ -1,0 +1,7 @@
+{
+  "name": "Composio - Fluid Agent Execution Platform",
+  "description": "Production-grade tool execution, secure delegated auth, sandboxed environments, and parallel integrations for AI agents with fluid, organic motion and glossy interfaces.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
